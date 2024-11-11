@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dinamik Model Eğitim</title>
+    <script>
+        let paramIndex = 0;
+
+        // Yeni parametre ekleme fonksiyonu
+        function addParam() {
+            const container = document.getElementById('param-container');
+
+            const newParam = `
+                <div class="param-group">
+                    <label>Parametre Adı:</label>
+                    <input type="text" name="param_name[]" required><br>
+
+                    <label>Değerler (virgülle ayrılmış):</label>
+                    <input type="text" name="param_value_${paramIndex}[]" required><br>
+                    <hr>
+                </div>
+            `;
+
+            container.insertAdjacentHTML('beforeend', newParam);
+            paramIndex++;
+        }
+    </script>
+</head>
+<body>
+    <h1>Dinamik Makine Öğrenmesi Modeli Eğit</h1>
+    <form action="/train" method="POST">
+        <div id="param-container">
+            <!-- İlk parametre grubunu ekle -->
+            <div class="param-group">
+                <label>Parametre Adı:</label>
+                <input type="text" name="param_name[]" required><br>
+
+                <label>Değerler (virgülle ayrılmış):</label>
+                <input type="text" name="param_value_0[]" required><br>
+                <hr>
+            </div>
+        </div>
+
+        <!-- Yeni parametre ekleme butonu -->
+        <button type="button" onclick="addParam()">Yeni Parametre Ekle</button><br><br>
+
+        <!-- Formu gönderme butonu -->
+        <button type="submit">Modeli Eğit</button>
+    </form>
+</body>
+</html>

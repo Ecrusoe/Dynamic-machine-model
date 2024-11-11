@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Sensör ve Cihaz Kontrolü</title>
+</head>
+<body>
+    <h2>Sensör Verilerini Girin</h2>
+    <form id="sensorForm">
+        <label for="humidity">Nem (%):</label>
+        <input type="text" id="humidity" name="humidity"><br><br>
+
+        <label for="temperature">Sıcaklık (°C):</label>
+        <input type="text" id="temperature" name="temperature"><br><br>
+
+        <label for="light">Işık Yoğunluğu:</label>
+        <input type="text" id="light" name="light"><br><br>
+
+        <button type="submit">Gönder</button>
+    </form>
+
+    <h2>Sonuçlar</h2>
+    <p id="results"></p>
+
+    <script>
+        document.getElementById('sensorForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+
+            // Formdan verileri al
+            const humidity = document.getElementById('humidity').value;
+            const temperature = document.getElementById('temperature').value;
+            const light = document.getElementById('light').value;
+
+            // API'ye POST isteği gönder
+            fetch('/control', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    humidity: parseFloat(humidity),
+                    temperature: parseFloat(temperature),
+                    light: parseFloat(light)
+                })
+            })
+            .then(response => response.json())
+            .then(data => {
+                // Sonuçları ekrana yazdır
+                document.getElementById('results').innerHTML = `
+                    Motor Durumu: ${data.motor_status} <br>
+                    Servo Açısı: ${data.servo_angle}° <br>
+                    LED Durumu: ${data.led_status}
+                `;
+            })
+            .catch(error => console.error('Hata:', error));
+        });
+    </script>
+</body>
+</html>

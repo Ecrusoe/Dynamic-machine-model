@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Cihaz Kontrol</title>
+</head>
+<body>
+    <h1>Makine Öğrenmesi ile Cihaz Kontrolü</h1>
+
+    <!-- Eğitim formu -->
+    <h2>Cihaz Verilerini Eğitim</h2>
+    <form action="/train" method="post">
+        <label for="min_value">Minimum Değer:</label>
+        <input type="number" id="min_value" name="min_value" required><br>
+        
+        <label for="max_value">Maksimum Değer:</label>
+        <input type="number" id="max_value" name="max_value" required><br>
+        
+        <label for="sensor_value">Anlık Sensör Değeri:</label>
+        <input type="number" id="sensor_value" name="sensor_value" required><br>
+
+        <label for="label">Cihaz Durumu (1: Çalışıyor, 0: Kapalı):</label>
+        <input type="number" id="label" name="label" required><br>
+        
+        <button type="submit">Verileri Eğit</button>
+    </form>
+
+    <!-- Tahmin formu -->
+    <h2>Cihaz Tahmini Yap</h2>
+    <form action="/predict" method="post">
+        <label for="min_value">Minimum Değer:</label>
+        <input type="number" id="min_value" name="min_value" required><br>
+        
+        <label for="max_value">Maksimum Değer:</label>
+        <input type="number" id="max_value" name="max_value" required><br>
+        
+        <label for="sensor_value">Anlık Sensör Değeri:</label>
+        <input type="number" id="sensor_value" name="sensor_value" required><br>
+
+        <button type="submit">Tahmin Yap</button>
+    </form>
+</body>
+</html>

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Makine Öğrenmesi ile 4 İşlem</title>
+</head>
+<body>
+    <h1>Makine Öğrenmesi ile 4 İşlem</h1>
+    <form method="POST">
+        <label for="num1">Sayı 1:</label>
+        <input type="text" id="num1" name="num1" required><br><br>
+        <label for="num2">Sayı 2:</label>
+        <input type="text" id="num2" name="num2" required><br><br>
+        <label for="operation">İşlem:</label>
+        <select id="operation" name="operation">
+            <option value="add">Toplama</option>
+            <option value="subtract">Çıkarma</option>
+            <option value="multiply">Çarpma</option>
+            <option value="divide">Bölme</option>
+        </select><br><br>
+        <input type="submit" value="Hesapla">
+    </form>
+
+    {% if result is not none %}
+        <h2>Sonuç: {{ result }}</h2>
+    {% endif %}
+</body>
+</html>
